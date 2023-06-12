@@ -27,12 +27,14 @@ SECRET_KEY = 'django-insecure-^_b(3e(51xwls$9tinyh!e$vw!dz6-pgl-w6$uxj2=rcdk^t&2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ddah2.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'ddah2.herokuapp.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
+      'rest_framework',
     'contacts_api',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+      'corsheaders.middleware.CorsMiddleware',
+       'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'ddah2.urls'
 
