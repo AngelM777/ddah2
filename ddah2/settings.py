@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 import django_heroku
+import dj_database_url
 
 from pathlib import Path
 
@@ -34,7 +35,7 @@ ALLOWED_HOSTS = ['localhost', 'ddah2.herokuapp.com']
 
 INSTALLED_APPS = [
     'corsheaders',
-      'rest_framework',
+    'rest_framework',
     'contacts_api',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -84,14 +85,17 @@ WSGI_APPLICATION = 'ddah2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ddb8ccrj2fb277',
-        'USER': 'iatinrmvcydxla',
-        'PASSWORD': 'daffaf4cb938835622c39d140a2a2ab79e23d324b51c7fb4eae35f0eb9f181b0',
-        'HOST': 'ec2-44-215-22-37.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ddah2',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+    
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600) # add this
+DATABASES['default'].update(db_from_env) # add this
 
 
 # Password validation
